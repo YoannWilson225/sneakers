@@ -15,24 +15,29 @@
       <div class="nav">
         <div class="logo">Sneakers</div>
         <div class="links">
-          <div class="">
-            A propos 
-          </div>
-          <div class="">
-            Contact 
-          </div>
-        
+          <div class="">A propos</div>
+          <div class="">Contact</div>
         </div>
       </div>
       <div class="content">
         <div class="image">
           <img src="images/shoes.png" alt="shoes" />
         </div>
+        <input
+          type="file"
+          id="fileInput"
+          accept="image/*"
+          style="display: none"
+        />
+        <button id="uploadBtn">Changer l'image</button>
+
         <div class="header">
-          <h1>Orijazz <br> Sneakers 2025</h1>
+          <h1>
+            Orijazz <br />
+            Sneakers 2025
+          </h1>
           <p>Acheter maintenant</p>
         </div>
-       
       </div>
       <div class="footer">
         <div class="socials">
@@ -42,5 +47,26 @@
         </div>
       </div>
     </div>
+
+    <script>
+      document
+        .getElementById("uploadBtn")
+        .addEventListener("click", function () {
+          document.getElementById("fileInput").click();
+        });
+
+      document
+        .getElementById("fileInput")
+        .addEventListener("change", function (event) {
+          const file = event.target.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+              document.querySelector(".image img").src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+          }
+        });
+    </script>
   </body>
 </html>
